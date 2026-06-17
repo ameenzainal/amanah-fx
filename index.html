@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amanah Growth FX - Login</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .box {
+      width: 340px;
+      background: rgba(10, 20, 40, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,150,255,0.25);
+    }
+
+    h2 {
+      color: #4db8ff;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #1f4f8f;
+      background: #0b1b33;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      background: #1e90ff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Amanah Growth FX</h2>
+  <p>Login Pelabur</p>
+
+  <input type="text" id="nama" placeholder="Nama Penuh">
+  <input type="text" id="phone" placeholder="No Telefon">
+
+  <button onclick="login()">TERUSKAN</button>
+</div>
+
+<script>
+function login() {
+  let nama = document.getElementById("nama").value;
+  let phone = document.getElementById("phone").value;
+
+  if(nama === "" || phone === "") {
+    alert("Sila isi semua maklumat");
+    return;
+  }
+
+  localStorage.setItem("user", nama);
+  localStorage.setItem("phone", phone);
+
+  window.location.href = "main.html";
+}
+</script>
+
+</body>
+</html>
